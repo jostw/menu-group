@@ -1,7 +1,7 @@
 {
   "name": "menu-group",
   "version": "0.0.0",
-  "homepage": "https://github.com/gaia-components/menu-group",
+  "homepage": "https://github.com/fxos-components/menu-group",
   "main": "script.js",
   "license": "MPL",
   "ignore": [
@@ -15,7 +15,7 @@
     "README.md"
   ],
   "devDependencies": {
-    "evt": "gaia-components/evt#~0.4.0",
-    "smart-button": "gaia-components/smart-button"
+    "evt": "fxos-components/evt#~0.4.0",
+    "fxos-tv-button": "fxos-components/fxos-tv-button"
   }
 }
