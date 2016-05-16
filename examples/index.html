@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Menu Group Demo</title>
-  <meta name="description" content="Demo app for menu group" />
-  <style type="text/css">
+  <meta name="description" content="Demo app for menu group">
+
+  <link rel="stylesheet" href="fxos-tv-icons-embedded.css">
+  <link rel="stylesheet" href="../bower_components/fxos-tv-button/style.css">
+  <link rel="stylesheet" href="../style.css">
+  <style>
     html,
     body {
       margin: 0;
@@ -21,7 +25,14 @@
       background-image: url('test-icon_s.png');
     }
 
+    #test-target-2:before {
+      background-image: none;
+    }
   </style>
+
+  <script src="../bower_components/evt/index.js"></script>
+  <script src="../bower_components/fxos-tv-button/script.js"></script>
+  <script src="../script.js"></script>
   <script>
     function openMenu() {
       document.getElementById('test-target').open();
@@ -39,6 +50,19 @@
       document.getElementById('test-target').blur();
     }
 
+    function switchMenu() {
+      var testTarget = document.getElementById('test-target-2');
+      var iconAfter = testTarget.dataset.iconAfter;
+
+      testTarget.classList.add('switching-icon');
+      testTarget.dataset.iconAfter = testTarget.dataset.icon;
+      testTarget.dataset.icon = iconAfter;
+
+      setTimeout(function() {
+        testTarget.classList.remove('switching-icon');
+      }, 100);
+    }
+
     window.onload = function() {
       ['opened', 'closed', 'will-open', 'will-close'].forEach(function(evt) {
         document.getElementById('test-target').addEventListener(evt,
@@ -48,12 +72,6 @@
       });
     };
   </script>
-  <script></script>
-  <script src="../bower_components/evt/index.js"></script>
-  <link rel="stylesheet" type="text/css" href="../../fxos-tv-button/style.css">
-  <script src="../bower_components/fxos-tv-button/script.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="../style.css">
-  <script src="../script.js" type="text/javascript"></script>
 </head>
 <body role="application">
   <button type="button" onclick="openMenu();">Open</button>
@@ -68,6 +86,11 @@
       <fxos-tv-button type="simple-text">Text 4</fxos-tv-button>
       <fxos-tv-button type="simple-text">Text 5</fxos-tv-button>
     </menu-group>
+  </div>
+
+  <button type="button" onclick="switchMenu();">Switch</button>
+  <div>
+    <menu-group id="test-target-2" data-icon="tv" data-icon-after="filter"></menu-group>
   </div>
 </body>
 </html>
